@@ -1,3 +1,9 @@
+<div align="center">
+
+🌐 **Portfolio:** [salmanrki.github.io](https://salmanrki.github.io/)
+
+</div>
+
 <!-- Typing Intro -->
 <h1 align="center">
   <img src="https://readme-typing-svg.herokuapp.com?size=30&duration=4000&color=00FFFF&center=true&vCenter=true&width=700&lines=Hi+I'm+Salman+Rasheed;AI+Full+Stack+Developer;PHP+%7C+React+%7C+Node+%7C+Python;Building+SaaS+%26+AI+Automation+Systems" />
