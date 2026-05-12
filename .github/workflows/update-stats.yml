@@ -1,0 +1,38 @@
+name: Update GitHub Stats Cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # Every day at 3 AM UTC
+  workflow_dispatch:     # Allow manual trigger from Actions tab
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download stats SVGs
+        run: |
+          mkdir -p assets
+          curl -sf "https://github-readme-stats.vercel.app/api?username=salmanrki&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" \
+            -o assets/stats.svg || echo "stats failed"
+
+          curl -sf "https://github-readme-stats.vercel.app/api/top-langs/?username=salmanrki&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" \
+            -o assets/langs.svg || echo "langs failed"
+
+          curl -sf "https://streak-stats.demolab.com?user=salmanrki&theme=tokyonight&hide_border=true" \
+            -o assets/streak.svg || echo "streak failed"
+
+          curl -sf "https://github-profile-trophy.vercel.app/?username=salmanrki&theme=algolia&no-frame=true&no-bg=true&margin-w=15&column=6" \
+            -o assets/trophy.svg || echo "trophy failed"
+
+      - name: Commit updated SVGs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --staged --quiet || git commit -m "chore: update GitHub stats cards"
+          git push
