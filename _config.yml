@@ -1,3 +1,7 @@
-theme: jekyll-theme-minimal
-title: SalmanRK's homepage
-description: Bookmark this to keep an eye on my project updates!
+title: Salman Rasheed — AI Full Stack Developer | OneBigHost
+description: >-
+  AI-powered Full-Stack Developer specializing in PHP, Laravel, React, Node.js,
+  Python, AI Automation, SaaS & Flutter. Founder at OneBigHost.com
+url: "https://salmanrki.github.io"
+baseurl: ""
+# No gem theme — using custom index.html

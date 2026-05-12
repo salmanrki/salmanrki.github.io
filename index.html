@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salman Rasheed — AI Full Stack Developer | OneBigHost</title>
+  <meta name="description" content="Salman Rasheed – AI-powered Full-Stack Developer specializing in PHP, Laravel, React, Node.js, Python, AI Automation & SaaS. Founder at OneBigHost.com" />
+  <link rel="icon" href="https://onebighost.com/favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cyan:    #00f5ff;
+      --purple:  #bf00ff;
+      --green:   #00ff88;
+      --orange:  #ff6b00;
+      --pink:    #ff0080;
+      --dark:    #020010;
+      --dark2:   #040820;
+      --glass:   rgba(0, 245, 255, 0.05);
+      --glass-b: rgba(0, 245, 255, 0.12);
+      --text:    #c8e6ff;
+      --font-h:  'Orbitron', monospace;
+      --font-b:  'Rajdhani', sans-serif;
+      --font-m:  'Share Tech Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark2); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+    /* ── CANVAS BACKGROUND ─────────────────────────────────────── */
+    #cosmos { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .wrap { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 40px;
+      background: rgba(2,0,16,0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0,245,255,0.15);
+    }
+    .nav-brand {
+      display:flex; align-items:center; gap:12px;
+      font-family: var(--font-h); font-size:1rem; color:#fff;
+      text-decoration:none;
+    }
+    .nav-brand .logo-ring {
+      width:36px; height:36px; border-radius:50%;
+      border:2px solid var(--cyan);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.7rem; color:var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a {
+      color:var(--text); text-decoration:none;
+      font-family:var(--font-h); font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
+      transition:color .3s, text-shadow .3s;
+    }
+    .nav-links a:hover { color:var(--cyan); text-shadow:0 0 8px var(--cyan); }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    #hero {
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; text-align:center;
+      padding: 120px 24px 80px;
+    }
+    .hero-badge {
+      display:inline-block;
+      background: linear-gradient(90deg, rgba(0,245,255,.12), rgba(191,0,255,.12));
+      border:1px solid rgba(0,245,255,.35);
+      padding:6px 20px; border-radius:40px;
+      font-family:var(--font-m); font-size:.78rem; color:var(--cyan);
+      letter-spacing:2px; margin-bottom:28px;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-name {
+      font-family:var(--font-h); font-size:clamp(2.4rem,7vw,5.5rem);
+      font-weight:900; line-height:1.05;
+      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--green));
+      -webkit-background-clip: text; -webkit-text-fill-color:transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(0,245,255,.35));
+      animation: fadeUp .9s .1s ease both;
+    }
+    .hero-title {
+      font-family:var(--font-h); font-size:clamp(.9rem,2.5vw,1.4rem);
+      color:var(--purple); letter-spacing:4px; margin:16px 0 8px;
+      animation: fadeUp .9s .2s ease both;
+    }
+    #typed-line {
+      font-family:var(--font-m); font-size:clamp(.9rem,2vw,1.15rem);
+      color:var(--cyan); min-height:1.6em;
+      animation: fadeUp .9s .3s ease both;
+    }
+    .cursor { display:inline-block; width:2px; height:1.1em; background:var(--cyan); animation:blink .7s step-end infinite; vertical-align:text-bottom; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+    .hero-desc {
+      max-width:680px; margin:24px auto 0;
+      font-size:1.05rem; color:rgba(200,230,255,.7);
+      animation: fadeUp .9s .4s ease both;
+    }
+    .hero-cta {
+      display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+      margin-top:40px;
+      animation: fadeUp .9s .5s ease both;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 32px; border-radius:6px;
+      font-family:var(--font-h); font-size:.68rem; letter-spacing:2px; text-transform:uppercase;
+      text-decoration:none; transition:all .3s; cursor:pointer; border:none;
+    }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--cyan),var(--purple));
+      color:#000; font-weight:700;
+      box-shadow: 0 0 24px rgba(0,245,255,.35);
+    }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 0 40px rgba(0,245,255,.6); }
+    .btn-outline {
+      background:transparent; color:var(--cyan);
+      border:1px solid var(--cyan);
+      box-shadow: 0 0 12px rgba(0,245,255,.2) inset;
+    }
+    .btn-outline:hover { background:rgba(0,245,255,.1); transform:translateY(-3px); box-shadow:0 0 24px rgba(0,245,255,.35); }
+
+    .hero-scroll {
+      margin-top:60px; display:flex; flex-direction:column; align-items:center; gap:8px;
+      font-family:var(--font-m); font-size:.72rem; color:rgba(0,245,255,.5); letter-spacing:3px;
+      animation: fadeUp 1s .8s ease both;
+    }
+    .scroll-line { width:1px; height:50px; background:linear-gradient(to bottom,var(--cyan),transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)} }
+
+    /* ── SECTIONS ──────────────────────────────────────────────── */
+    section { padding:100px 0; }
+    .section-header {
+      text-align:center; margin-bottom:60px;
+    }
+    .section-tag {
+      font-family:var(--font-m); font-size:.75rem; color:var(--purple);
+      letter-spacing:4px; text-transform:uppercase; margin-bottom:12px;
+    }
+    .section-title {
+      font-family:var(--font-h); font-size:clamp(1.6rem,4vw,2.8rem); font-weight:900;
+      background:linear-gradient(135deg,var(--cyan),var(--purple));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .section-line {
+      width:80px; height:2px; margin:18px auto 0;
+      background:linear-gradient(to right,var(--cyan),var(--purple));
+      border-radius:2px;
+    }
+
+    /* ── GLASS CARD ────────────────────────────────────────────── */
+    .card {
+      background:var(--glass);
+      border:1px solid rgba(0,245,255,.15);
+      border-radius:16px;
+      backdrop-filter:blur(12px);
+      padding:32px;
+      transition:border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .card:hover {
+      border-color:rgba(0,245,255,.4);
+      box-shadow:0 0 40px rgba(0,245,255,.12), 0 0 80px rgba(191,0,255,.06);
+      transform:translateY(-4px);
+    }
+
+    /* ── ABOUT ─────────────────────────────────────────────────── */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+    @media(max-width:720px){ .about-grid{ grid-template-columns:1fr; } }
+    .about-text h3 { font-family:var(--font-h); font-size:1.2rem; color:var(--cyan); margin-bottom:16px; }
+    .about-list { list-style:none; }
+    .about-list li { padding:8px 0; border-bottom:1px solid rgba(0,245,255,.08); display:flex; align-items:center; gap:10px; }
+    .about-list li::before { content:'▹'; color:var(--cyan); font-size:1.1rem; }
+    .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .stat-box {
+      background:var(--glass-b); border:1px solid rgba(0,245,255,.2);
+      border-radius:12px; padding:24px; text-align:center;
+    }
+    .stat-num { font-family:var(--font-h); font-size:2.2rem; color:var(--cyan); font-weight:900; line-height:1; }
+    .stat-label { font-family:var(--font-m); font-size:.75rem; color:rgba(200,230,255,.6); letter-spacing:2px; margin-top:6px; }
+
+    /* ── SKILLS ────────────────────────────────────────────────── */
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; }
+    .skill-category h4 {
+      font-family:var(--font-h); font-size:.75rem; letter-spacing:3px;
+      color:var(--purple); text-transform:uppercase; margin-bottom:18px;
+    }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:10px; }
+    .tag {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:7px 14px; border-radius:6px;
+      font-family:var(--font-m); font-size:.78rem;
+      border:1px solid; transition:all .3s;
+    }
+    .tag-cyan  { border-color:rgba(0,245,255,.35);  color:var(--cyan);   background:rgba(0,245,255,.06);  }
+    .tag-purple{ border-color:rgba(191,0,255,.35);  color:var(--purple); background:rgba(191,0,255,.06); }
+    .tag-green { border-color:rgba(0,255,136,.35);  color:var(--green);  background:rgba(0,255,136,.06); }
+    .tag-orange{ border-color:rgba(255,107,0,.35);  color:var(--orange); background:rgba(255,107,0,.06); }
+    .tag-pink  { border-color:rgba(255,0,128,.35);  color:var(--pink);   background:rgba(255,0,128,.06);  }
+    .tag:hover { transform:translateY(-2px); filter:brightness(1.3); }
+
+    /* ── SERVICES ──────────────────────────────────────────────── */
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; }
+    .service-card { text-align:center; }
+    .service-icon {
+      font-size:2.8rem; margin-bottom:16px; display:block;
+      filter:drop-shadow(0 0 12px var(--cyan));
+    }
+    .service-card h3 { font-family:var(--font-h); font-size:.9rem; color:var(--cyan); margin-bottom:10px; letter-spacing:1px; }
+    .service-card p { font-size:.95rem; color:rgba(200,230,255,.7); }
+
+    /* ── GITHUB STATS ──────────────────────────────────────────── */
+    .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:28px; }
+    .stats-card { text-align:center; }
+    .stats-card img { width:100%; border-radius:12px; filter:hue-rotate(0deg); }
+    .stats-trophy { text-align:center; }
+    .stats-trophy img { width:100%; max-width:900px; border-radius:12px; }
+
+    /* ── SOCIAL ────────────────────────────────────────────────── */
+    .social-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+    .social-card {
+      display:flex; align-items:center; gap:16px;
+      text-decoration:none; padding:20px 24px;
+      border-radius:12px; transition:all .3s;
+      background:var(--glass); border:1px solid rgba(0,245,255,.15);
+    }
+    .social-card:hover { transform:translateY(-4px); border-color:rgba(0,245,255,.45); box-shadow:0 0 30px rgba(0,245,255,.15); }
+    .social-icon { font-size:1.8rem; min-width:40px; text-align:center; }
+    .social-info .name { font-family:var(--font-h); font-size:.75rem; color:var(--cyan); letter-spacing:1px; }
+    .social-info .handle { font-family:var(--font-m); font-size:.82rem; color:rgba(200,230,255,.6); margin-top:2px; }
+
+    /* ── CONTACT ───────────────────────────────────────────────── */
+    .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+    @media(max-width:720px){ .contact-inner{ grid-template-columns:1fr; } }
+    .contact-text h3 { font-family:var(--font-h); font-size:1.3rem; color:var(--cyan); margin-bottom:16px; }
+    .contact-text p { color:rgba(200,230,255,.7); margin-bottom:24px; }
+    .contact-email {
+      display:inline-flex; align-items:center; gap:10px;
+      font-family:var(--font-m); font-size:1rem; color:var(--cyan);
+      padding:14px 24px; border-radius:8px; text-decoration:none;
+      border:1px solid rgba(0,245,255,.3); background:rgba(0,245,255,.06);
+      transition:all .3s;
+    }
+    .contact-email:hover { background:rgba(0,245,255,.15); box-shadow:0 0 24px rgba(0,245,255,.25); }
+    .contact-visual {
+      display:flex; flex-direction:column; align-items:center; gap:20px;
+    }
+    .obh-logo {
+      font-family:var(--font-h); font-size:1.5rem; font-weight:900;
+      color:#fff; text-decoration:none;
+    }
+    .obh-logo span { color:var(--cyan); }
+    .obh-tagline { font-family:var(--font-m); font-size:.78rem; color:rgba(200,230,255,.5); letter-spacing:3px; text-align:center; }
+    .obh-orb {
+      width:160px; height:160px; border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, rgba(0,245,255,.25), rgba(191,0,255,.15), transparent);
+      border:2px solid rgba(0,245,255,.3);
+      box-shadow:0 0 60px rgba(0,245,255,.2), 0 0 120px rgba(191,0,255,.1);
+      display:flex; align-items:center; justify-content:center;
+      animation:orbPulse 4s ease-in-out infinite;
+      position:relative;
+    }
+    @keyframes orbPulse { 0%,100%{box-shadow:0 0 60px rgba(0,245,255,.2)}50%{box-shadow:0 0 100px rgba(0,245,255,.4),0 0 160px rgba(191,0,255,.2)} }
+    .obh-orb::before {
+      content:''; position:absolute; inset:-20px; border-radius:50%;
+      border:1px solid rgba(0,245,255,.1); animation:spin 12s linear infinite;
+    }
+    .obh-orb::after {
+      content:''; position:absolute; inset:-40px; border-radius:50%;
+      border:1px dashed rgba(191,0,255,.15); animation:spin 20s linear infinite reverse;
+    }
+    .obh-inner-text { font-family:var(--font-h); font-size:.65rem; color:var(--cyan); text-align:center; letter-spacing:2px; z-index:1; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top:1px solid rgba(0,245,255,.1);
+      padding:40px 24px; text-align:center;
+      font-family:var(--font-m); font-size:.82rem; color:rgba(200,230,255,.4);
+    }
+    footer a { color:var(--cyan); text-decoration:none; }
+    footer a:hover { text-shadow:0 0 8px var(--cyan); }
+    .footer-brand { font-family:var(--font-h); font-size:1rem; color:var(--cyan); margin-bottom:8px; }
+
+    /* ── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── GLOW DIVIDER ──────────────────────────────────────────── */
+    .glow-div {
+      height:1px;
+      background:linear-gradient(to right,transparent,var(--cyan),var(--purple),transparent);
+      opacity:.3; margin:0;
+    }
+
+    /* ── SCANLINE OVERLAY ──────────────────────────────────────── */
+    .scanlines {
+      position:fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none;
+      background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+    }
+
+    /* ── HOLOGRAPHIC FLICKER ───────────────────────────────────── */
+    .holo {
+      animation:holoFlicker 8s ease infinite;
+    }
+    @keyframes holoFlicker {
+      0%,100%{opacity:1}
+      92%{opacity:1} 93%{opacity:.85} 94%{opacity:1} 96%{opacity:.9} 97%{opacity:1}
+    }
+
+    /* ── UPWORK HIRE ───────────────────────────────────────────── */
+    .hire-band {
+      background:linear-gradient(135deg, rgba(111,218,68,.12), rgba(0,245,255,.08));
+      border:1px solid rgba(111,218,68,.35);
+      border-radius:14px; padding:32px; text-align:center;
+      margin-top:40px;
+    }
+    .hire-band h3 { font-family:var(--font-h); font-size:1rem; color:#6fda44; margin-bottom:10px; letter-spacing:2px; }
+    .hire-band p { color:rgba(200,230,255,.7); margin-bottom:20px; }
+    .btn-upwork {
+      background:linear-gradient(135deg,#6fda44,#4da832);
+      color:#000; padding:14px 36px; border-radius:6px;
+      font-family:var(--font-h); font-size:.72rem; letter-spacing:2px; font-weight:700;
+      text-decoration:none; display:inline-block;
+      transition:all .3s;
+      box-shadow:0 0 24px rgba(111,218,68,.35);
+    }
+    .btn-upwork:hover { transform:translateY(-3px); box-shadow:0 0 40px rgba(111,218,68,.55); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media(max-width:560px){
+      nav { padding:12px 20px; }
+      .nav-links { display:none; }
+      .stat-grid { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cosmos canvas -->
+<canvas id="cosmos"></canvas>
+<!-- Scanline overlay -->
+<div class="scanlines"></div>
+
+<!-- ─── NAV ─────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="logo-ring">OBH</div>
+    SALMAN<span style="color:var(--purple);">RKI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="#connect">Connect</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-badge">⚡ AVAILABLE FOR HIRE · ONEBIGHOST.COM</div>
+    <h1 class="hero-name holo">SALMAN RASHEED</h1>
+    <p class="hero-title">AI FULL-STACK DEVELOPER</p>
+    <p id="typed-line"><span id="typed-text"></span><span class="cursor"></span></p>
+    <p class="hero-desc">
+      Building tomorrow's web — SaaS platforms, AI automation, scalable backends,
+      cross-platform apps & next-gen AI agents from <strong style="color:var(--cyan)">OneBigHost.com</strong>.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~017291022684bd8dd1" target="_blank" rel="noopener">🚀 Hire Me on Upwork</a>
+      <a class="btn btn-outline" href="#contact">📡 Get In Touch</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── ABOUT ────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// WHO AM I</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="card about-text">
+        <h3>Hello, Universe. 👋</h3>
+        <p style="margin-bottom:18px;color:rgba(200,230,255,.8);">
+          I'm <strong style="color:var(--cyan)">Salman Rasheed</strong>, an AI-powered Full-Stack Developer
+          and founder at <a href="https://onebighost.com" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-family:var(--font-h)">OneBigHost.com</a>.
+          I specialize in building high-performance digital systems that merge traditional engineering with bleeding-edge AI.
+        </p>
+        <ul class="about-list">
+          <li>PHP, Laravel, React, Node.js &amp; Python</li>
+          <li>AI Agents — OpenAI, Gemini, LLaMA</li>
+          <li>SaaS platforms &amp; AI automation workflows</li>
+          <li>Flutter &amp; Java cross-platform mobile apps</li>
+          <li>WordPress plugins &amp; advanced integrations</li>
+          <li>Server management — WHM, cPanel, VPS, Linux</li>
+        </ul>
+      </div>
+      <div>
+        <div class="stat-grid">
+          <div class="stat-box reveal">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">YEARS EXP</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">PROJECTS</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">TECH STACKS</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">PASSION</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── SKILLS ───────────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// ARSENAL</div>
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+
+      <div class="card skill-category reveal">
+        <h4>⚡ Languages</h4>
+        <div class="skill-tags">
+          <span class="tag tag-purple">🐘 PHP</span>
+          <span class="tag tag-orange">☕ Java</span>
+          <span class="tag tag-cyan">🟨 JavaScript</span>
+          <span class="tag tag-cyan">🐍 Python</span>
+          <span class="tag tag-cyan">🔷 TypeScript</span>
+        </div>
+      </div>
+
+      <div class="card skill-category reveal">
+        <h4>🚀 Frameworks</h4>
+        <div class="skill-tags">
+          <span class="tag tag-pink">🔥 Laravel</span>
+          <span class="tag tag-cyan">⚛️ React</span>
+          <span class="tag tag-cyan">🐦 Flutter</span>
+          <span class="tag tag-green">🟩 Node.js</span>
+          <span class="tag tag-orange">🔴 CodeIgniter</span>
+          <span class="tag tag-purple">🚂 Express.js</span>
+        </div>
+      </div>
+
+      <div class="card skill-category reveal">
+        <h4>🤖 AI &amp; Machine Learning</h4>
+        <div class="skill-tags">
+          <span class="tag tag-purple">🧠 OpenAI</span>
+          <span class="tag tag-cyan">✨ Gemini</span>
+          <span class="tag tag-green">🦙 LLaMA</span>
+          <span class="tag tag-pink">🎨 Lovable.ai</span>
+          <span class="tag tag-cyan">🔧 Wrap.dev</span>
+        </div>
+      </div>
+
+      <div class="card skill-category reveal">
+        <h4>🗄️ Databases</h4>
+        <div class="skill-tags">
+          <span class="tag tag-cyan">🐬 MySQL</span>
+          <span class="tag tag-green">🍃 MongoDB</span>
+          <span class="tag tag-purple">🐘 PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="card skill-category reveal">
+        <h4>🛠 DevOps &amp; Tools</h4>
+        <div class="skill-tags">
+          <span class="tag tag-cyan">🐳 Docker</span>
+          <span class="tag tag-orange">🐧 Linux / RedHat</span>
+          <span class="tag tag-purple">⚫ GitHub</span>
+          <span class="tag tag-orange">🔧 WHM / cPanel</span>
+          <span class="tag tag-green">🖥️ VPS</span>
+        </div>
+      </div>
+
+      <div class="card skill-category reveal">
+        <h4>📱 Mobile &amp; CMS</h4>
+        <div class="skill-tags">
+          <span class="tag tag-cyan">📱 Android / iOS</span>
+          <span class="tag tag-purple">🔵 WordPress</span>
+          <span class="tag tag-green">🔌 Custom Plugins</span>
+          <span class="tag tag-orange">🖼 React Dashboards</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── SERVICES ──────────────────────────────────────────────────── -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// WHAT I BUILD</div>
+      <h2 class="section-title">Services</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="card service-card reveal">
+        <span class="service-icon">⚡</span>
+        <h3>AI SaaS Platforms</h3>
+        <p>Full-stack SaaS applications powered by AI — subscriptions, dashboards, automation, and multi-tenant architecture.</p>
+      </div>
+      <div class="card service-card reveal">
+        <span class="service-icon">🤖</span>
+        <h3>AI Chatbots &amp; Agents</h3>
+        <p>Custom AI agents built with OpenAI, Gemini, and LLaMA — automated workflows, RAG pipelines, and voice bots.</p>
+      </div>
+      <div class="card service-card reveal">
+        <span class="service-icon">🛠</span>
+        <h3>Scalable APIs &amp; Backend</h3>
+        <p>RESTful &amp; GraphQL APIs, microservices, PHP/Laravel backends, Node.js servers, and robust database design.</p>
+      </div>
+      <div class="card service-card reveal">
+        <span class="service-icon">📱</span>
+        <h3>Mobile Apps</h3>
+        <p>Cross-platform Flutter apps for Android &amp; iOS, plus Java-based Android &amp; desktop utility applications.</p>
+      </div>
+      <div class="card service-card reveal">
+        <span class="service-icon">🌐</span>
+        <h3>WordPress &amp; Plugins</h3>
+        <p>Custom WordPress plugins, themes, advanced integrations, WooCommerce solutions, and API bridges.</p>
+      </div>
+      <div class="card service-card reveal">
+        <span class="service-icon">🖥️</span>
+        <h3>Server Management</h3>
+        <p>WHM, cPanel, VPS, RedHat Linux server configuration, deployment pipelines, and infrastructure management.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── GITHUB STATS ───────────────────────────────────────────────── -->
+<section id="stats">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// METRICS</div>
+      <h2 class="section-title">GitHub Stats</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="stats-trophy card reveal" style="margin-bottom:32px;padding:24px;">
+      <p style="font-family:var(--font-m);font-size:.75rem;color:var(--purple);letter-spacing:3px;margin-bottom:16px;">🏆 TROPHIES</p>
+      <img src="https://github-profile-trophy.vercel.app/?username=salmanrki&theme=algolia&no-frame=true&no-bg=true&margin-w=15&column=7" alt="GitHub Trophies" loading="lazy" />
+    </div>
+
+    <div class="stats-grid">
+      <div class="card stats-card reveal">
+        <img src="https://github-readme-stats.vercel.app/api?username=salmanrki&show_icons=true&theme=tokyonight&hide_border=true&bg_color=020010&title_color=00f5ff&text_color=c8e6ff&icon_color=bf00ff" alt="GitHub Stats" loading="lazy" />
+      </div>
+      <div class="card stats-card reveal">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=salmanrki&layout=compact&theme=tokyonight&hide_border=true&bg_color=020010&title_color=00f5ff&text_color=c8e6ff" alt="Top Languages" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="card stats-card reveal" style="margin-top:28px;padding:24px;">
+      <p style="font-family:var(--font-m);font-size:.75rem;color:var(--purple);letter-spacing:3px;margin-bottom:16px;">🔥 STREAK</p>
+      <img src="https://streak-stats.demolab.com?user=salmanrki&theme=tokyonight&hide_border=true&background=020010&ring=00f5ff&fire=bf00ff&currStreakLabel=00f5ff&sideLabels=c8e6ff&dates=c8e6ff" alt="GitHub Streak" loading="lazy" style="width:100%;" />
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── CONNECT ───────────────────────────────────────────────────── -->
+<section id="connect">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// NETWORK</div>
+      <h2 class="section-title">Social Profiles</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="social-grid">
+      <a class="social-card reveal" href="https://www.facebook.com/SalmanRKI" target="_blank" rel="noopener">
+        <span class="social-icon">📘</span>
+        <div class="social-info">
+          <div class="name">Facebook</div>
+          <div class="handle">@SalmanRKI</div>
+        </div>
+      </a>
+      <a class="social-card reveal" href="https://www.instagram.com/the_end_salman" target="_blank" rel="noopener">
+        <span class="social-icon">📸</span>
+        <div class="social-info">
+          <div class="name">Instagram</div>
+          <div class="handle">@the_end_salman</div>
+        </div>
+      </a>
+      <a class="social-card reveal" href="https://www.linkedin.com/in/salmanrki" target="_blank" rel="noopener">
+        <span class="social-icon">💼</span>
+        <div class="social-info">
+          <div class="name">LinkedIn</div>
+          <div class="handle">@salmanrki</div>
+        </div>
+      </a>
+      <a class="social-card reveal" href="https://x.com/salmanrki" target="_blank" rel="noopener">
+        <span class="social-icon">🐦</span>
+        <div class="social-info">
+          <div class="name">Twitter / X</div>
+          <div class="handle">@salmanrki</div>
+        </div>
+      </a>
+      <a class="social-card reveal" href="https://github.com/salmanrki" target="_blank" rel="noopener">
+        <span class="social-icon">⚫</span>
+        <div class="social-info">
+          <div class="name">GitHub</div>
+          <div class="handle">@salmanrki</div>
+        </div>
+      </a>
+      <a class="social-card reveal" href="https://www.upwork.com/freelancers/~017291022684bd8dd1" target="_blank" rel="noopener">
+        <span class="social-icon">🟢</span>
+        <div class="social-info">
+          <div class="name">Upwork</div>
+          <div class="handle">Hire Me →</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="hire-band reveal">
+      <h3>⚡ AVAILABLE FOR FREELANCE WORK</h3>
+      <p>Looking for a world-class AI developer to build your next product? Let's create something extraordinary together.</p>
+      <a class="btn-upwork" href="https://www.upwork.com/freelancers/~017291022684bd8dd1" target="_blank" rel="noopener">🚀 HIRE ME ON UPWORK</a>
+    </div>
+  </div>
+</section>
+
+<div class="glow-div"></div>
+
+<!-- ─── CONTACT ───────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-tag">// TRANSMIT</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card contact-inner reveal">
+      <div class="contact-text">
+        <h3>Let's Build the Future</h3>
+        <p>
+          Whether you need an AI-powered SaaS, a custom automation system, a mobile app,
+          or a complete digital infrastructure — I'm here to make it happen.
+        </p>
+        <a class="contact-email" href="mailto:salman@onebighost.com">
+          📡 salman@onebighost.com
+        </a>
+        <p style="margin-top:20px;font-family:var(--font-m);font-size:.8rem;color:rgba(200,230,255,.5);">
+          OR REACH ME ON ANY PLATFORM ABOVE ↑
+        </p>
+      </div>
+      <div class="contact-visual">
+        <div class="obh-orb">
+          <div class="obh-inner-text">ONE<br/>BIG<br/>HOST</div>
+        </div>
+        <a class="obh-logo" href="https://onebighost.com" target="_blank" rel="noopener">ONE<span>BIG</span>HOST</a>
+        <div class="obh-tagline">POWERING THE NEXT WEB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">SALMANRKI.GITHUB.IO</div>
+  <p>
+    Built by <a href="https://onebighost.com" target="_blank" rel="noopener">OneBigHost.com</a> ·
+    <a href="mailto:salman@onebighost.com">salman@onebighost.com</a>
+  </p>
+  <p style="margin-top:10px;font-size:.72rem;opacity:.5;">
+    © 2025 Salman Rasheed · All rights reserved · Designed for the year 4000
+  </p>
+</footer>
+
+<!-- ─── SCRIPTS ───────────────────────────────────────────────────── -->
+<script>
+/* ── COSMOS (STARFIELD + PARTICLES) ─────────────────────────────── */
+(function(){
+  const canvas = document.getElementById('cosmos');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], nebulas = [], grid = [];
+
+  function resize(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Stars
+  for(let i=0;i<220;i++){
+    stars.push({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*1.4+0.2,
+      a: Math.random(), da: (Math.random()-.5)*.006,
+      speed: Math.random()*.12+.02
+    });
+  }
+  // Nebula blobs
+  const nebCols = ['rgba(0,245,255,', 'rgba(191,0,255,', 'rgba(0,255,136,'];
+  for(let i=0;i<6;i++){
+    nebulas.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*300+120,
+      c:nebCols[i%nebCols.length],
+      a:Math.random()*.055+.015,
+      dx:(Math.random()-.5)*.18, dy:(Math.random()-.5)*.18
+    });
+  }
+  // Grid lines
+  const gap=80;
+  for(let x=0;x<W;x+=gap) grid.push({x,vertical:true});
+  for(let y=0;y<H;y+=gap) grid.push({y,vertical:false});
+
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Background gradient
+    const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
+    bg.addColorStop(0,'#040820');
+    bg.addColorStop(1,'#020010');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+    // Nebulas
+    nebulas.forEach(n=>{
+      n.x+=n.dx; n.y+=n.dy;
+      if(n.x<-n.r||n.x>W+n.r) n.dx*=-1;
+      if(n.y<-n.r||n.y>H+n.r) n.dy*=-1;
+      const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
+      g.addColorStop(0,n.c+n.a+')');
+      g.addColorStop(1,n.c+'0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill();
+    });
+
+    // Grid
+    ctx.strokeStyle='rgba(0,245,255,0.03)'; ctx.lineWidth=1;
+    grid.forEach(l=>{
+      ctx.beginPath();
+      if(l.vertical){ctx.moveTo(l.x,0);ctx.lineTo(l.x,H);}
+      else           {ctx.moveTo(0,l.y);ctx.lineTo(W,l.y);}
+      ctx.stroke();
+    });
+
+    // Stars
+    stars.forEach(s=>{
+      s.y+=s.speed;
+      if(s.y>H){s.y=0;s.x=Math.random()*W;}
+      s.a+=s.da;
+      if(s.a<0||s.a>1) s.da*=-1;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(200,230,255,'+s.a+')';
+      ctx.fill();
+    });
+
+    // Floating energy lines
+    ctx.save();
+    ctx.globalAlpha=.12;
+    for(let i=0;i<3;i++){
+      const ox=Math.sin(t*.0007+(i*2.1))*W*.3;
+      ctx.strokeStyle=i===0?'#00f5ff':i===1?'#bf00ff':'#00ff88';
+      ctx.lineWidth=1;
+      ctx.beginPath();
+      for(let x=0;x<=W;x+=12){
+        const y=H/2 + Math.sin(x*.006+t*.001+i*2)*80+ox*.3;
+        x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── TYPED INTRO ─────────────────────────────────────────────────── */
+(function(){
+  const lines=[
+    'PHP · Laravel · React · Node.js',
+    'Building AI SaaS Platforms 🚀',
+    'AI Agents · OpenAI · Gemini · LLaMA',
+    'Flutter · Java · Mobile Apps',
+    'WordPress · Plugins · WooCommerce',
+    'WHM · VPS · Linux Server Admin',
+    'Founder @ OneBigHost.com ⚡',
+  ];
+  let li=0, ci=0, deleting=false, el=document.getElementById('typed-text'), pause=0;
+  function type(){
+    if(pause>0){pause--;setTimeout(type,50);return;}
+    const line=lines[li];
+    if(!deleting){
+      el.textContent=line.slice(0,++ci);
+      if(ci===line.length){deleting=true;pause=60;}
+    } else {
+      el.textContent=line.slice(0,--ci);
+      if(ci===0){deleting=false;li=(li+1)%lines.length;pause=20;}
+    }
+    setTimeout(type,deleting?40:75);
+  }
+  type();
+})();
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────────── */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+</script>
+</body>
+</html>
